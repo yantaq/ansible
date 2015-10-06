@@ -1,0 +1,10 @@
+- hosts: all 
+  sudo: yes
+  sudo_user: vagrant
+  tasks:
+    - name: Select all from exmaple table
+      command: psql -c "SELECT * FROM example_table" vagrant
+      register: select_all_from_example
+
+    - name: Display example table contents
+      debug: msg="{{ select_all_from_example.stdout }}"
